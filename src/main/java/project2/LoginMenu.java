@@ -11,4 +11,8 @@ public class LoginMenu {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
     }
+    @FXML
+    protected void onRegisterButtonClicked(){
+        welcomeText.setText("Registration");
+    }
 }
