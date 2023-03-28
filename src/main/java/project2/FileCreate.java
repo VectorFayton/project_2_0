@@ -38,6 +38,19 @@ public class FileCreate{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public boolean checkData(String name, String password){
+        try {
+            ArrayList<String> users = readFile("Users");
+            for (int i = 0; i < users.size(); i += 3){
+                if (name.contains(users.get(i + 2)) && password.contains(users.get(i + 1))){
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 }

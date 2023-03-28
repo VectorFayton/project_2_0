@@ -28,8 +28,12 @@ public class LoginMenu {
 
     @FXML
     protected void onLoginButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-        OpenScene("LoginPasswordError");
+        FileCreate file_create = new FileCreate();
+        Boolean checkData = file_create.checkData(username_text_field.getText(), password_field.getText());
+        if (checkData){
+            OpenScene("RegistrationMenu");
+        } else
+            OpenScene("LoginPasswordError");
     }
     @FXML
     protected void onRegisterButtonClicked(){
