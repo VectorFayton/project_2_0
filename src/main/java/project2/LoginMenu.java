@@ -43,6 +43,7 @@ public class LoginMenu {
     protected void ErrorEmptyFields(){
 
     }
+
     public static void OpenScene(String name_of_fxml_file){
         FXMLLoader loader_registration_menu = new FXMLLoader(LoginMenu.class.getResource(String.format("%s.fxml", name_of_fxml_file)));
 

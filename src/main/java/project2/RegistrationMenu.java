@@ -30,12 +30,35 @@ public class RegistrationMenu {
     private TextField email_text_field;
 
     @FXML
+    private ToggleGroup gender_toggle_group;
+
+    @FXML
     protected void onSignUpButtonClick(){
+        FileCreate.addData(name_surname_text_field.getText(), new_password_field.getText(), email_text_field.getText(), "Users");
     }
     @FXML
     protected void onLoginLabelButtonClick(){
         sign_up_button.getScene().getWindow().hide();
         LoginMenu.OpenScene("LoginMenu");
     }
+    @FXML
+    protected void onFemaleRadioButtonClick(){
+        Genders();
+    }
 
+    @FXML
+    protected void onMaleRadioButtonClick(){
+        Genders();
+    }
+    @FXML
+    protected void onOtherRadioButtonClick(){
+        Genders();
+    }
+
+    private void Genders(){
+        ToggleGroup gender_toggle_group = new ToggleGroup();
+        female_radio_button.setToggleGroup(gender_toggle_group);
+        male_radio_button.setToggleGroup(gender_toggle_group);
+        other_radio_button.setToggleGroup(gender_toggle_group);
+    }
 }
