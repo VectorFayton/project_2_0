@@ -27,11 +27,21 @@ public class LoginMenu {
     private Button login_button;
 
     @FXML
+    private Label empty_username_error;
+
+    @FXML
+    private Label empty_password_error;
+
+    @FXML
     protected void onLoginButtonClick() {
         FileCreate file_create = new FileCreate();
         Boolean checkData = file_create.checkData(username_text_field.getText(), password_field.getText());
-        if (checkData){
-            OpenScene("RegistrationMenu");
+        if (username_text_field.getText().equals("")) {
+            empty_username_error.setText("username is empty");
+        } if(password_field.getText().equals("")){
+            empty_password_error.setText("password is empty");
+        } else if (checkData){
+            OpenScene("NewsMenuBar");
         } else
             OpenScene("LoginPasswordError");
     }

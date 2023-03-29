@@ -35,6 +35,7 @@ public class RegistrationMenu {
     @FXML
     protected void onSignUpButtonClick(){
         FileCreate.addData(name_surname_text_field.getText(), new_password_field.getText(), email_text_field.getText(), "Users");
+        LoginMenu.OpenScene("NewsMenuBar");
     }
     @FXML
     protected void onLoginLabelButtonClick(){
