@@ -42,7 +42,7 @@
                         <Glow />
                      </effect>
                   </Rectangle>
-                  <TextField fx:id="surname_text_field" layoutX="66.0" layoutY="93.0" prefHeight="25.0" prefWidth="235.0" promptText="Name Surname">
+                  <TextField fx:id="username_text_field" layoutX="66.0" layoutY="93.0" prefHeight="25.0" prefWidth="235.0" promptText="Name Surname">
                      <effect>
                         <Glow />
                      </effect>

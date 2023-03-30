@@ -8,7 +8,7 @@ public class RegistrationMenu {
     @FXML
     private Button sign_up_button;
     @FXML
-    private TextField surname_text_field;
+    private TextField username_text_field;
 
     @FXML
     private PasswordField new_password_field;
@@ -21,9 +21,6 @@ public class RegistrationMenu {
     private RadioButton other_radio_button;
     @FXML
     private TextField email_text_field;
-
-    @FXML
-    private ToggleGroup gender_toggle_group;
     @FXML
     private Label username_error_message_label;
     @FXML
@@ -33,17 +30,21 @@ public class RegistrationMenu {
 
     @FXML
     protected void onSignUpButtonClick(){
-        if (surname_text_field.getText().equals("")) {
+        FileCreate file_create = new FileCreate();
+        file_create.setUsername(username_text_field.getText());
+        if (username_text_field.getText().equals("")) {
             username_error_message_label.setText("username is empty");
         } else if(new_password_field.getText().equals("")) {
             password_error_message_label.setText("password is empty");
         } else if(email_text_field.getText().equals("")){
             email_error_message_label.setText("email is empty");
-        } else if(new_password_field.getText().equals(surname_text_field.getText()) || username_error_message_label.equals(new_password_field.getText())){
+        } else if(new_password_field.getText().equals(username_text_field.getText()) || username_error_message_label.equals(new_password_field.getText())){
             username_error_message_label.setText("username and password is same");
             password_error_message_label.setText("username and password is same");
+        } else if(file_create.checkData(username_text_field.getText(),"", 1)) {
+            username_error_message_label.setText("account with this username has created");
         } else {
-            FileCreate.addData(surname_text_field.getText(), new_password_field.getText(), email_text_field.getText(), "Users");
+            FileCreate.addData(username_text_field.getText(), new_password_field.getText(), email_text_field.getText(), "Users");
             email_text_field.getScene().getWindow().hide();
             LoginMenu.OpenScene("NewsMenuBar");
         }
