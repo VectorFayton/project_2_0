@@ -1,21 +1,14 @@
 package project2;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class RegistrationMenu {
 
     @FXML
     private Button sign_up_button;
     @FXML
-    private TextField name_surname_text_field;
+    private TextField surname_text_field;
 
     @FXML
     private PasswordField new_password_field;
@@ -31,11 +24,29 @@ public class RegistrationMenu {
 
     @FXML
     private ToggleGroup gender_toggle_group;
+    @FXML
+    private Label username_error_message_label;
+    @FXML
+    private Label password_error_message_label;
+    @FXML
+    private Label email_error_message_label;
 
     @FXML
     protected void onSignUpButtonClick(){
-        FileCreate.addData(name_surname_text_field.getText(), new_password_field.getText(), email_text_field.getText(), "Users");
-        LoginMenu.OpenScene("NewsMenuBar");
+        if (surname_text_field.getText().equals("")) {
+            username_error_message_label.setText("username is empty");
+        } else if(new_password_field.getText().equals("")) {
+            password_error_message_label.setText("password is empty");
+        } else if(email_text_field.getText().equals("")){
+            email_error_message_label.setText("email is empty");
+        } else if(new_password_field.getText().equals(surname_text_field.getText()) || username_error_message_label.equals(new_password_field.getText())){
+            username_error_message_label.setText("username and password is same");
+            password_error_message_label.setText("username and password is same");
+        } else {
+            FileCreate.addData(surname_text_field.getText(), new_password_field.getText(), email_text_field.getText(), "Users");
+            email_text_field.getScene().getWindow().hide();
+            LoginMenu.OpenScene("NewsMenuBar");
+        }
     }
     @FXML
     protected void onLoginLabelButtonClick(){

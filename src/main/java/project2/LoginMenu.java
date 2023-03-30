@@ -38,12 +38,15 @@ public class LoginMenu {
         Boolean checkData = file_create.checkData(username_text_field.getText(), password_field.getText());
         if (username_text_field.getText().equals("")) {
             empty_username_error.setText("username is empty");
-        } if(password_field.getText().equals("")){
+        }if(password_field.getText().equals("")){
             empty_password_error.setText("password is empty");
         } else if (checkData){
+            username_text_field.getScene().getWindow().hide();
             OpenScene("NewsMenuBar");
-        } else
+        } else {
             OpenScene("LoginPasswordError");
+        }
+        System.out.println(checkData);
     }
     @FXML
     protected void onRegisterButtonClicked(){
@@ -52,7 +55,8 @@ public class LoginMenu {
     }
     @FXML
     protected void onForgotPasswordMouseClick(){
-        welcomeText.setText("ForgotPassword");
+        register_button_label.getScene().getWindow().hide();
+        OpenScene("ResetPassword");
     }
     protected void ErrorEmptyFields(){
 
