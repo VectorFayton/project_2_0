@@ -42,12 +42,12 @@
                         <Glow />
                      </effect>
                   </Rectangle>
-                  <TextField fx:id="username_text_field" layoutX="65.0" layoutY="118.0" prefHeight="25.0" prefWidth="235.0" promptText="Username">
+                  <TextField fx:id="username_text_field" layoutX="65.0" layoutY="118.0" onAction="#onUsernameTextFieldAction" onKeyTyped="#onUsernameTextFieldAction" prefHeight="25.0" prefWidth="235.0" promptText="Username">
                      <effect>
                         <Glow />
                      </effect>
                   </TextField>
-                  <PasswordField fx:id="password_field" layoutX="65.0" layoutY="176.0" prefHeight="25.0" prefWidth="235.0" promptText="Password">
+                  <PasswordField fx:id="password_field" layoutX="65.0" layoutY="176.0" onKeyTyped="#onPasswordFieldAction" prefHeight="25.0" prefWidth="235.0" promptText="Password">
                      <effect>
                         <Glow />
                      </effect>

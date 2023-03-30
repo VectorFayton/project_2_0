@@ -32,6 +32,8 @@ public class LoginMenu {
     @FXML
     private Label empty_password_error;
 
+    private static int max_length = 9;
+
     @FXML
     protected void onLoginButtonClick() {
         FileCreate file_create = new FileCreate();
@@ -58,10 +60,20 @@ public class LoginMenu {
         register_button_label.getScene().getWindow().hide();
         OpenScene("ResetPassword");
     }
-    protected void ErrorEmptyFields(){
-
+    @FXML
+    protected void onUsernameTextFieldAction(){
+        if (username_text_field.getText().length() > max_length){
+            String limitation = username_text_field.getText().substring(0, max_length);
+            username_text_field.setText(limitation);
+        }
     }
-
+    @FXML
+    protected void onPasswordFieldAction(){
+        if (password_field.getText().length() > max_length){
+            String limitation = password_field.getText().substring(0, max_length);
+            password_field.setText(limitation);
+        }
+    }
     public static void OpenScene(String name_of_fxml_file){
         FXMLLoader loader_registration_menu = new FXMLLoader(LoginMenu.class.getResource(String.format("%s.fxml", name_of_fxml_file)));
 

@@ -26,7 +26,10 @@ public class RegistrationMenu {
     @FXML
     private Label password_error_message_label;
     @FXML
+    private Label gender_error_message_label;
+    @FXML
     private Label email_error_message_label;
+    private static int max_length = 9;
 
     @FXML
     protected void onSignUpButtonClick(){
@@ -36,6 +39,8 @@ public class RegistrationMenu {
             username_error_message_label.setText("username is empty");
         } else if(new_password_field.getText().equals("")) {
             password_error_message_label.setText("password is empty");
+        } else if(!(male_radio_button.isSelected() || female_radio_button.isSelected() || other_radio_button.isSelected())) {
+            gender_error_message_label.setText("choose one from the list");
         } else if(email_text_field.getText().equals("")){
             email_error_message_label.setText("email is empty");
         } else if(new_password_field.getText().equals(username_text_field.getText()) || username_error_message_label.equals(new_password_field.getText())){
@@ -66,6 +71,21 @@ public class RegistrationMenu {
     @FXML
     protected void onOtherRadioButtonClick(){
         Genders();
+    }
+
+    @FXML
+    protected void onUsernameTextFieldAction(){
+        if (username_text_field.getText().length() > max_length){
+            String limitation = username_text_field.getText().substring(0, max_length);
+            username_text_field.setText(limitation);
+        }
+    }
+    @FXML
+    protected void onPasswordFieldAction() {
+        if (new_password_field.getText().length() > max_length) {
+            String limitation = new_password_field.getText().substring(0, max_length);
+            new_password_field.setText(limitation);
+        }
     }
 
     private void Genders(){
