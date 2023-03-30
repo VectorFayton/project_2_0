@@ -54,6 +54,7 @@ public class RegistrationMenu {
             LoginMenu.OpenScene("NewsMenuBar");
         }
     }
+    \\
     @FXML
     protected void onLoginLabelButtonClick(){
         sign_up_button.getScene().getWindow().hide();
