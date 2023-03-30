@@ -35,7 +35,7 @@ public class LoginMenu {
     @FXML
     protected void onLoginButtonClick() {
         FileCreate file_create = new FileCreate();
-        Boolean checkData = file_create.checkData(username_text_field.getText(), password_field.getText());
+        Boolean checkData = file_create.checkData(username_text_field.getText(), password_field.getText(), 2);
         if (username_text_field.getText().equals("")) {
             empty_username_error.setText("username is empty");
         }if(password_field.getText().equals("")){

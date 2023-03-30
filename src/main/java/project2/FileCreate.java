@@ -4,6 +4,14 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class FileCreate{
+
+    private String email;
+    private String file_name;
+    private int count;
+    private String username;
+    private String password;
+
+
     public void createFolder(){
 
     }
@@ -38,13 +46,23 @@ public class FileCreate{
         }
         fileOutputStream.close();
     }
-    public boolean checkData(String username, String password){
+    public boolean checkData(String username, String password, int count){
         try {
             ArrayList<String> users = readFile("Users");
-            for (int i = 0; i < users.size(); i += 3){
-                if (username.contains(users.get(i)) && password.contains(users.get(i + 1))){
-                    return true;
-                }
+            switch (count) {
+                case 1:
+                    for (int i = 0; i < users.size(); i += 3) {
+                        if (username.contains(users.get(i))) {
+                            return true;
+                        }
+                    }
+                case 2:
+                    for (int i = 0; i < users.size(); i += 3) {
+                        if (username.contains(users.get(i)) && password.contains(users.get(i + 1))) {
+                            return true;
+                        }
+                    }
+                break;
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -62,19 +80,68 @@ public class FileCreate{
         }
     }
 
-    public int handlerError(String username, String password, String email){
-        if (username.contains("")){
-            return 0;
+    public void logic(){
+        if(checkData(username, "", 1)){
+            ResetPassword reset_password = new ResetPassword();
+            reset_password.setLabel("username not exist");
         }
-        if (password.contains("")){
-            return 1;
-        }
-        if (email.contains("")){
-            return 2;
-        }
-        if (username.contains(password) || password.contains(username)){
-            return 3;
-        }
-        return -1;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFile_name() {
+        return file_name;
+    }
+
+    public void setFile_name(String file_name) {
+        this.file_name = file_name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public FileCreate(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+    public FileCreate(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public FileCreate(String username, String password, int count) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public FileCreate(){}
+
 }

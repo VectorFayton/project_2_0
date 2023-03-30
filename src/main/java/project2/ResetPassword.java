@@ -2,6 +2,7 @@ package project2;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -15,14 +16,41 @@ public class ResetPassword {
     @FXML
     private PasswordField password_field;
     @FXML
+    private Label password_error_message_label;
+    @FXML
+    private Label username_error_message_label;
+    @FXML
+    private Label sign_in_label;
+
+    @FXML
     protected void onSafeChangesButtonClick() throws IOException {
-        FileCreate.resetPassword(username_text_field.getText(), password_field.getText(), "Users");
-        safe_changes_button.getScene().getWindow().hide();
-        LoginMenu.OpenScene("LoginMenu");
+        FileCreate file_create = new FileCreate();
+        file_create.setUsername(username_text_field.getText());
+        if (username_text_field.getText().equals("")) {
+            username_error_message_label.setText("username is empty");
+        } else if (password_field.getText().equals("")) {
+            password_error_message_label.setText("password is empty");
+        } else if (password_field.getText().equals(username_text_field.getText()) || username_text_field.equals(password_field.getText())) {
+            username_error_message_label.setText("username and password is same");
+            password_error_message_label.setText("username and password is same");
+        } else if(!file_create.checkData(username_text_field.getText(), "", 1)) {
+            username_error_message_label.setText("username is not exist");
+        } else{
+            FileCreate.resetPassword(username_text_field.getText(), password_field.getText(), "Users");
+            safe_changes_button.getScene().getWindow().hide();
+            LoginMenu.OpenScene("LoginMenu");
+        }
     }
     @FXML
     protected void onSignInButtonLabelClick(){
         password_field.getScene().getWindow().hide();
         LoginMenu.OpenScene("LoginMenu");
+    }
+
+    public void setLabel(String text){
+        username_error_message_label.setText(text);
+    }
+
+    public ResetPassword(){
     }
 }
